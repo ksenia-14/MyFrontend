@@ -302,6 +302,7 @@ footer {
 
 .popup-div {
   position: absolute;
+  pointer-events: none;
   top: 0;
   bottom: 0;
   right: 0;
@@ -311,6 +312,7 @@ footer {
 
 .popup-fade {
   display: none;
+  pointer-events: none;
   position: fixed;
   background: rgba(0, 92, 141, 0.257);
   top: 0;

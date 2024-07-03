@@ -1,0 +1,546 @@
+$main-blue: #4ac6eb;
+$dark-blue: rgb(10, 137, 175);
+$very-dark-blue: rgb(0, 103, 159);
+$light-blue: #4ac6eba3;
+$very-light-blue: rgba(74, 198, 235, 0.173);
+
+$main-font-size: 18px;
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Helvetica', Arial, sans-serif;
+    font-size: $main-font-size;
+
+    display: grid;
+    grid-template-rows: max-content 1fr max-content;
+    min-height: 100vh;
+
+    ::-webkit-calendar-picker-indicator {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="rgb(10, 137, 175)" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+    }
+}
+
+header {
+    background-color: $main-blue;
+    color: white;
+
+    a {
+        color: white;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    font-size: $main-font-size;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+select {
+    color: $dark-blue;
+    font-size: $main-font-size;
+}
+
+select:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: $light-blue;
+}
+
+footer {
+    background-color: $main-blue;
+    color: white;
+    text-align: right;
+    padding: 10px;
+    font-weight: bold;
+}
+
+// HEADER
+
+.header-menu {
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 1fr) min-content min-content min-content;
+    gap: 5px;
+    align-items: center;
+    top: 0%;
+    font-weight: bold;
+    min-height: 80px;
+    text-align: center;
+
+    button {
+        background-color: white;
+        border: 3px solid;
+        border-color: white;
+        border-radius: 15px;
+        padding: 14px;
+        margin: 10px;
+
+        color: $dark-blue;
+        font-weight: bold;
+
+        &:active {
+            background-color: $very-dark-blue;
+            border-color: white;
+            color: white;
+        }
+    }
+
+    .title-main-page {
+        font-size: 34px;
+        margin-left: 40px;
+        margin-right: 40px;
+
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+
+        svg {
+            fill: white;
+            height: 34px;
+            margin-right: 10px;
+        }
+    }
+
+    .exit {
+        padding: 16px;
+        margin-right: 40px;
+        margin-left: 40px;
+    }
+}
+
+// MAIN PAGE
+
+.main-page {
+    color: $dark-blue;
+    padding: 30px;
+
+    h2 {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: $main-blue;
+        color: white;
+        padding: 20px;
+        border-radius: 20px;
+        border: 3px solid $main-blue;
+        width: max-content;
+
+        &:active {
+            background-color: $very-dark-blue;
+            border-color: $very-dark-blue;
+        }
+    }
+}
+
+// FILTER
+
+@mixin custom-list {
+    position: relative;
+    float: left;
+    width: max-content;
+
+    &:after {
+        content: '<>';
+        color: $very-dark-blue;
+        transform: rotate(90deg);
+        right: 11px;
+        /*Adjust for position however you want*/
+
+        top: 20px;
+        padding: 0 0 2px;
+        border-bottom: 1px solid $light-blue;
+        /*left line */
+
+        position: absolute;
+        pointer-events: none;
+    }
+
+    select {
+        appearance: none;
+        display: block;
+        padding: 20px;
+        padding-right: 39px;
+        background-color: white;
+        border: 3px solid $light-blue;
+        border-radius: 20px;
+
+    }
+}
+
+.doc-menu {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    grid-template-rows: repeat(2, max-content);
+    gap: 10px;
+    margin-bottom: 20px;
+
+    input {
+        border-color: $light-blue;
+        border-width: 3px;
+        border-radius: 20px;
+        border-style: solid;
+        color: $dark-blue;
+
+        padding: 18px;
+        font-size: $main-font-size;
+
+        &:focus {
+            box-shadow: 0 0 10px $main-blue;
+        }
+    }
+
+    .block-find {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        display: grid;
+        grid-template-columns: max-content max-content;
+        gap: 10px;
+    }
+
+    .btn-new-doc {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        align-self: self-end;
+    }
+
+    .filter-menu {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+
+        .btn-filters {
+            padding: 9px 12px 9px 12px;
+            border: none;
+            border-color: $light-blue;
+            height: min-content;
+            background-color: white;
+            color: $dark-blue;
+
+            display: grid;
+            grid-template-columns: repeat(2, max-content);
+            gap: 5px;
+
+            svg {
+                fill: $dark-blue;
+                height: 20px;
+            }
+
+            &:active {
+                color: $very-dark-blue;
+            }
+        }
+
+        .filter-items {
+            display: grid;
+            grid-template-columns: repeat(5, max-content);
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            .filter-states {
+                @include custom-list;
+            }
+        }
+    }
+
+
+}
+
+// DOC 
+
+@mixin doc-grid() {
+    display: grid;
+    grid-template-columns: max-content repeat(5, 1fr);
+    align-items: center;
+}
+
+.doc-table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.doc-header {
+    @include doc-grid();
+
+    div {
+        background-color: $very-light-blue;
+        height: 40px;
+        padding: 20px;
+        text-align: center;
+        display: grid;
+
+        span {
+            justify-self: center;
+            align-self: center;
+        }
+    }
+}
+
+.doc-element {
+    @include doc-grid();
+
+    justify-content: center;
+    align-items: stretch;
+    border-left: 3px solid $very-light-blue;
+
+    .center {
+        text-align: center;
+    }
+
+    div {
+        border: 0px solid $very-light-blue;
+        border-right-width: 3px;
+        border-bottom-width: 3px;
+
+        border-bottom: 3px solid $very-light-blue;
+        border-right: 3px solid $very-light-blue;
+
+        height: 20px;
+        padding: 10px;
+
+        display: grid;
+
+        span {
+            align-self: center;
+        }
+    }
+}
+
+.checkbox-doc {
+    appearance: none;
+    background-color: white;
+    border: 1px solid #cacece;
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    width: 20px;
+
+    &:checked {
+        background-color: white;
+        border: 1px solid $main-blue;
+        color: $dark-blue;
+    }
+
+    &:checked:after {
+        content: '\2714';
+        font-size: 14px;
+        position: absolute;
+        top: 0px;
+        left: 3px;
+        color: $main-blue;
+    }
+}
+
+.doc-actions {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    gap: 20px;
+
+    button {
+        width: 250px;
+    }
+}
+
+// POPUP
+
+.popup-div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.popup-fade {
+    display: none;
+    position: fixed;
+    background: rgba(0, 92, 141, 0.257);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.popup {
+    position: fixed;
+
+    max-height: min-content;
+    min-height: 100px;
+    height: min-content;
+    overflow: auto;
+
+    z-index: 2;
+    display: grid;
+    padding: 50px;
+    background: #FFF;
+    border: 8px solid white;
+
+    box-shadow: 0 0 30px $dark-blue;
+
+    h2 {
+        margin: 0px 0 25px 0;
+    }
+
+    span {
+        font-weight: bold;
+    }
+
+    input {
+        margin: 8px 0 15px 0;
+
+        border-color: $light-blue;
+        border-width: 3px;
+        border-radius: 15px;
+        border-style: solid;
+        color: $dark-blue;
+
+        padding: 10px;
+        font-size: $main-font-size;
+
+        height: 35px;
+    }
+
+    button {
+        margin: 10px 0 0px 0;
+        padding: 22px;
+        border-radius: 20px;
+        border: none;
+        min-width: 250px;
+    }
+}
+
+@mixin auth-block {
+    border-radius: 40px;
+    top: 15%;
+    width: 500px;
+    left: calc((100vw - 620px) / 2);
+}
+
+.reg-div {
+    display: none;
+    @include auth-block;
+}
+
+.login-div {
+    display: none;
+    @include auth-block;
+}
+
+.new-doc {
+    display: none;
+    border-radius: 40px;
+    top: 5%;
+    bottom: 1000px;
+    width: 600px;
+    height: calc(100vh - 290px);
+    left: calc((100vw - 690px) / 2);
+    overscroll-behavior: contain;
+
+    .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+    }
+
+    button {
+        margin-top: 35px;
+        width: 100%;
+        padding: 25px;
+    }
+}
+
+.input-file {
+    width: max-content;
+    margin-top: 5px;
+
+    .input-file-btn {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        vertical-align: middle;
+        color: $dark-blue;
+        text-align: center;
+        border-radius: 4px;
+        background-color: white;
+        line-height: 22px;
+        padding: 20px;
+        box-sizing: border-box;
+        border: 3px solid $dark-blue;
+        border-radius: 10px;
+        margin-top: 5px;
+        transition: background-color 0.2s;
+        width: 280px;
+
+    }
+
+    /* Focus */
+    input[type=file] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        display: block;
+        width: 0;
+        height: 0;
+
+        &:focus+.input-file-btn {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+        }
+    }
+
+    /* Hover/active */
+    &:hover .input-file-btn {
+        background-color: $very-light-blue;
+    }
+
+    &:active .input-file-btn {
+        background-color: $very-dark-blue;
+        border-color: $very-dark-blue;
+        color: white;
+    }
+}
+
+.doc-states {
+    @include custom-list();
+    margin: 8px 0px;
+
+    select {
+        border-radius: 15px;
+        padding: 17px;
+        width: 295px;
+    }
+}
+
+.icon-close {
+    fill: $dark-blue;
+    height: 20px;
+    width: 20px;
+    justify-self: end;
+}

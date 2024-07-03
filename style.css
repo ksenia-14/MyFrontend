@@ -395,6 +395,11 @@ footer {
   width: 500px;
   left: calc((100vw - 620px) / 2);
 }
+.reg-div button {
+  margin-top: 30px;
+  min-width: max-content;
+  width: 50%;
+}
 
 .login-div {
   display: none;
@@ -402,6 +407,11 @@ footer {
   top: 15%;
   width: 500px;
   left: calc((100vw - 620px) / 2);
+}
+.login-div button {
+  margin-top: 30px;
+  min-width: max-content;
+  width: 50%;
 }
 
 .new-doc {

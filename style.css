@@ -31,16 +31,61 @@ a {
 }
 
 button {
+  cursor: pointer;
   font-size: 18px;
   font-weight: bold;
 }
 
-ul {
-  list-style-type: none;
+input,
+textarea {
+  border-color: rgba(74, 198, 235, 0.6392156863);
+  border-width: 3px;
+  border-radius: 20px;
+  border-style: solid;
+  color: rgb(10, 137, 175);
+  padding: 18px;
+  font-size: 18px;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px #4ac6eb;
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(74, 198, 235, 0.6392156863);
 }
 
-input:focus {
-  outline: none;
+textarea {
+  resize: none;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  height: 10px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: white;
+  -webkit-border-radius: 16px;
+}
+
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+  height: 10px;
+  background-color: rgba(74, 198, 235, 0.173);
+  border: 2px solid rgba(74, 198, 235, 0.6392156863);
+  -webkit-border-radius: 16px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 select {
@@ -50,10 +95,6 @@ select {
 
 select:focus {
   outline: none;
-}
-
-input::placeholder {
-  color: rgba(74, 198, 235, 0.6392156863);
 }
 
 footer {
@@ -135,18 +176,6 @@ footer {
   gap: 10px;
   margin-bottom: 20px;
 }
-.doc-menu input {
-  border-color: rgba(74, 198, 235, 0.6392156863);
-  border-width: 3px;
-  border-radius: 20px;
-  border-style: solid;
-  color: rgb(10, 137, 175);
-  padding: 18px;
-  font-size: 18px;
-}
-.doc-menu input:focus {
-  box-shadow: 0 0 10px #4ac6eb;
-}
 .doc-menu .block-find {
   grid-column-start: 1;
   grid-column-end: 2;
@@ -195,7 +224,7 @@ footer {
 .doc-menu .filter-menu .filter-items .filter-states {
   position: relative;
   float: left;
-  width: max-content;
+  min-width: max-content;
 }
 .doc-menu .filter-menu .filter-items .filter-states:after {
   content: "<>";
@@ -213,11 +242,12 @@ footer {
 .doc-menu .filter-menu .filter-items .filter-states select {
   appearance: none;
   display: block;
-  padding: 20px;
+  padding: 18px;
   padding-right: 39px;
   background-color: white;
   border: 3px solid rgba(74, 198, 235, 0.6392156863);
   border-radius: 20px;
+  width: 100%;
 }
 
 .doc-table {
@@ -227,7 +257,7 @@ footer {
 
 .doc-header {
   display: grid;
-  grid-template-columns: max-content repeat(5, 1fr);
+  grid-template-columns: max-content 1fr 1fr 0.6fr 0.7fr 1.3fr;
   align-items: center;
 }
 .doc-header div {
@@ -244,7 +274,7 @@ footer {
 
 .doc-element {
   display: grid;
-  grid-template-columns: max-content repeat(5, 1fr);
+  grid-template-columns: max-content 1fr 1fr 0.6fr 0.7fr 1.3fr;
   align-items: center;
   justify-content: center;
   align-items: stretch;
@@ -265,6 +295,9 @@ footer {
 }
 .doc-element div span {
   align-self: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .checkbox-doc {
@@ -301,8 +334,9 @@ footer {
 }
 
 .popup-div {
-  position: absolute;
+  display: none;
   pointer-events: none;
+  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
@@ -311,8 +345,6 @@ footer {
 }
 
 .popup-fade {
-  display: none;
-  pointer-events: none;
   position: fixed;
   background: rgba(0, 92, 141, 0.257);
   top: 0;
@@ -322,37 +354,33 @@ footer {
   z-index: 1;
 }
 
-.popup {
-  position: fixed;
-  max-height: min-content;
-  min-height: 100px;
-  height: min-content;
-  overflow: auto;
+.popup-window {
+  position: absolute;
   z-index: 2;
   display: grid;
+  height: min-content;
   padding: 50px;
   background: #FFF;
   border: 8px solid white;
   box-shadow: 0 0 30px rgb(10, 137, 175);
 }
-.popup h2 {
-  margin: 0px 0 25px 0;
+.popup-window h2 {
+  margin: 0px 0 35px 0;
 }
-.popup span {
+.popup-window div {
+  display: grid;
+}
+.popup-window label {
   font-weight: bold;
 }
-.popup input {
+.popup-window input,
+.popup-window textarea {
   margin: 8px 0 15px 0;
-  border-color: rgba(74, 198, 235, 0.6392156863);
-  border-width: 3px;
-  border-radius: 15px;
-  border-style: solid;
-  color: rgb(10, 137, 175);
-  padding: 10px;
-  font-size: 18px;
-  height: 35px;
 }
-.popup button {
+.popup-window textarea {
+  height: 70px;
+}
+.popup-window button {
   margin: 10px 0 0px 0;
   padding: 22px;
   border-radius: 20px;
@@ -380,21 +408,51 @@ footer {
   display: none;
   border-radius: 40px;
   top: 5%;
-  bottom: 1000px;
   width: 600px;
-  height: calc(100vh - 290px);
   left: calc((100vw - 690px) / 2);
-  overscroll-behavior: contain;
-}
-.new-doc .two-column {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 10px;
 }
 .new-doc button {
   margin-top: 35px;
   width: 100%;
   padding: 25px;
+}
+.new-doc .doc-states {
+  position: relative;
+  float: left;
+  min-width: max-content;
+  margin: 8px 0px;
+}
+.new-doc .doc-states:after {
+  content: "<>";
+  color: rgb(0, 103, 159);
+  transform: rotate(90deg);
+  right: 11px;
+  /*Adjust for position however you want*/
+  top: 20px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid rgba(74, 198, 235, 0.6392156863);
+  /*left line */
+  position: absolute;
+  pointer-events: none;
+}
+.new-doc .doc-states select {
+  appearance: none;
+  display: block;
+  padding: 18px;
+  padding-right: 39px;
+  background-color: white;
+  border: 3px solid rgba(74, 198, 235, 0.6392156863);
+  border-radius: 20px;
+  width: 100%;
+}
+.new-doc .doc-states select {
+  margin-bottom: 8px;
+  padding: 20px;
+}
+.new-doc .columns {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  align-items: center;
 }
 
 .input-file {
@@ -404,24 +462,17 @@ footer {
   /* Hover/active */
 }
 .input-file .input-file-btn {
-  position: relative;
-  display: inline-block;
   cursor: pointer;
-  outline: none;
-  text-decoration: none;
-  vertical-align: middle;
+  display: inline-block;
   color: rgb(10, 137, 175);
   text-align: center;
-  border-radius: 4px;
   background-color: white;
-  line-height: 22px;
   padding: 20px;
-  box-sizing: border-box;
   border: 3px solid rgb(10, 137, 175);
   border-radius: 10px;
   margin-top: 5px;
   transition: background-color 0.2s;
-  width: 280px;
+  width: 240px;
 }
 .input-file input[type=file] {
   position: absolute;
@@ -443,41 +494,8 @@ footer {
   color: white;
 }
 
-.doc-states {
-  position: relative;
-  float: left;
-  width: max-content;
-  margin: 8px 0px;
-}
-.doc-states:after {
-  content: "<>";
-  color: rgb(0, 103, 159);
-  transform: rotate(90deg);
-  right: 11px;
-  /*Adjust for position however you want*/
-  top: 20px;
-  padding: 0 0 2px;
-  border-bottom: 1px solid rgba(74, 198, 235, 0.6392156863);
-  /*left line */
-  position: absolute;
-  pointer-events: none;
-}
-.doc-states select {
-  appearance: none;
-  display: block;
-  padding: 20px;
-  padding-right: 39px;
-  background-color: white;
-  border: 3px solid rgba(74, 198, 235, 0.6392156863);
-  border-radius: 20px;
-}
-.doc-states select {
-  border-radius: 15px;
-  padding: 17px;
-  width: 295px;
-}
-
 .icon-close {
+  cursor: pointer;
   fill: rgb(10, 137, 175);
   height: 20px;
   width: 20px;

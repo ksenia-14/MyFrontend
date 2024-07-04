@@ -87,7 +87,7 @@
             <button id="btn-open-new-doc" class="btn-new-doc">Создать новый документ</button>
         </div>
 
-        <div class="doc-table">
+        <div id="doc-table" class="doc-table">
             <div class="doc-header">
                 <div></div>
                 <div><span>Название документа</span></div>
@@ -97,57 +97,57 @@
                 <div><span>Описание</span></div>
             </div>
 
-            <div class="doc-element">
+            <div id="doc-1" class="doc-element">
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
-                <div><span>Документ 1</span></div>
-                <div><span>Автор Авторович Авторов 1</span></div>
-                <div class="center"><span>01.01.2023</span></div>
-                <div><span>Готов</span></div>
-                <div><span>Описание 1</span></div>
+                <div><span class="doc-name">Документ 1</span></div>
+                <div><span class="doc-author">Автор Авторович Авторов 1</span></div>
+                <div class="date center"><span>01.01.2023</span></div>
+                <div><span class="doc-state">Готов</span></div>
+                <div><span class="doc-description">Описание 1</span></div>
             </div>
 
-            <div class="doc-element">
+            <div id="doc-2" class="doc-element">
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
-                <div><span>Документ 2</span></div>
-                <div><span>Автор Авторович Авторов 2</span></div>
-                <div class="center"><span>02.01.2023</span></div>
-                <div><span>Новый</span></div>
-                <div><span>Описание 2</span></div>
+                <div><span class="doc-name">Документ 2</span></div>
+                <div><span class="doc-author">Автор Авторович Авторов 2</span></div>
+                <div class="date center"><span>02.01.2023</span></div>
+                <div><span class="doc-state">Новый</span></div>
+                <div><span class="doc-description">Описание 2</span></div>
             </div>
 
-            <div class="doc-element">
+            <div id="doc-3" class="doc-element">
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
-                <div><span>Документ 3</span></div>
-                <div><span>Автор Авторович Авторов 3</span></div>
-                <div class="center"><span>03.01.2023</span></div>
-                <div><span>В процессе</span></div>
-                <div><span>Описание 3</span></div>
+                <div><span class="doc-name">Документ 3</span></div>
+                <div><span class="doc-author">Автор Авторович Авторов 3</span></div>
+                <div class="date center"><span>03.01.2023</span></div>
+                <div><span class="doc-state">В процессе</span></div>
+                <div><span class="doc-description">Описание 3</span></div>
             </div>
 
-            <div class="doc-element">
+            <div id="doc-4" class="doc-element">
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
-                <div><span>Документ 4</span></div>
-                <div><span>Автор Авторович Авторов 4</span></div>
-                <div class="center"><span>04.01.2023</span></div>
-                <div><span>Ожидает подтверждения</span></div>
-                <div><span>Описание 4</span></div>
+                <div><span class="doc-name">Документ 4</span></div>
+                <div><span class="doc-author">Автор Авторович Авторов 4</span></div>
+                <div class="date center"><span>04.01.2023</span></div>
+                <div><span class="doc-state">Ожидает подтверждения</span></div>
+                <div><span class="doc-description">Описание 4</span></div>
             </div>
 
-            <div class="doc-element">
+            <div id="doc-5" class="doc-element">
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
-                <div><span>Документ 5</span></div>
-                <div><span>Автор Авторович Авторов 5</span></div>
-                <div class="center"><span>05.01.2023</span></div>
-                <div><span>Отклонен</span></div>
-                <div><span>Большое описание, которое описывает очень много важного </span></div>
+                <div><span class="doc-name">Документ 5</span></div>
+                <div><span class="doc-author">Автор Авторович Авторов 5</span></div>
+                <div class="date center"><span>05.01.2023</span></div>
+                <div><span class="doc-state">Отклонен</span></div>
+                <div><span class="doc-description">Большое описание, которое описывает очень много важного </span></div>
             </div>
         </div>
 
         <div class="doc-actions">
-            <button>Отправить</button>
-            <button>Редактировать</button>
-            <button>Удалить</button>
-            <button>Скачать</button>
+            <button id="btn-send">Отправить</button>
+            <button id="btn-edit">Редактировать</button>
+            <button id="btn-delete">Удалить</button>
+            <button id="btn-download">Скачать</button>
         </div>
 
         <div id="popup-div" class="popup-div">
@@ -201,21 +201,21 @@
                 <h2>Создание нового документа</h2>
                 <div>
                     <label>Название документа</label>
-                    <input>
+                    <input id="doc-name">
                 </div>
                 <div>
                     <label>Автор</label>
-                    <input>
+                    <input id="doc-author">
                 </div>
                 <div class="columns">
                     <div>
                         <label>Дата создания</label>
-                        <input type="date">
+                        <input id="doc-date" type="date">
                     </div>
                     <div>
                         <label>Статус</label>
                         <form class="doc-states">
-                            <select>
+                            <select id="doc-state">
                                 <option value="" selected="selected">Все статусы</option>
                                 <option value="">Готов</option>
                                 <option value="">В процессе</option>
@@ -228,7 +228,7 @@
                 </div>
                 <div>
                     <label>Описание</label>
-                    <textarea></textarea>
+                    <textarea id="doc-description"></textarea>
                 </div>
                 <label class="input-file">
                     <input type="file">

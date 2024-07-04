@@ -1,4 +1,3 @@
-@charset "UTF-8";
 *,
 *::after,
 *::before {
@@ -36,7 +35,7 @@ button {
   font-weight: bold;
 }
 
-input,
+input:where(:not([type=radio])),
 textarea {
   border-color: rgba(74, 198, 235, 0.6392156863);
   border-width: 3px;
@@ -46,12 +45,12 @@ textarea {
   padding: 18px;
   font-size: 18px;
 }
-input:focus,
+input:where(:not([type=radio])):focus,
 textarea:focus {
   outline: none;
   box-shadow: 0 0 10px #4ac6eb;
 }
-input::placeholder,
+input:where(:not([type=radio]))::placeholder,
 textarea::placeholder {
   color: rgba(74, 198, 235, 0.6392156863);
 }
@@ -156,18 +155,6 @@ footer {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-.main-page button {
-  background-color: #4ac6eb;
-  color: white;
-  padding: 20px;
-  border-radius: 20px;
-  border: 3px solid #4ac6eb;
-  width: max-content;
-}
-.main-page button:active {
-  background-color: rgb(0, 103, 159);
-  border-color: rgb(0, 103, 159);
-}
 
 .doc-menu {
   display: grid;
@@ -175,6 +162,18 @@ footer {
   grid-template-rows: repeat(2, max-content);
   gap: 10px;
   margin-bottom: 20px;
+}
+.doc-menu button {
+  background-color: #4ac6eb;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #4ac6eb;
+  width: max-content;
+}
+.doc-menu button:active {
+  background-color: rgb(0, 103, 159);
+  border-color: rgb(0, 103, 159);
 }
 .doc-menu .block-find {
   grid-column-start: 1;
@@ -300,28 +299,21 @@ footer {
   text-overflow: ellipsis;
 }
 
-.checkbox-doc {
+.radio-doc input:where([type=radio]) {
+  -webkit-appearance: none;
   appearance: none;
-  background-color: white;
-  border: 1px solid #cacece;
-  padding: 9px;
-  border-radius: 3px;
-  display: inline-block;
-  position: relative;
-  width: 20px;
+  width: 22px;
+  height: 22px;
+  margin: calc(0.75em - 11px) 0.25rem 0 0;
+  vertical-align: top;
+  border-radius: 4px;
+  border-radius: 50%;
+  background-color: rgba(74, 198, 235, 0.173);
 }
-.checkbox-doc:checked {
-  background-color: white;
-  border: 1px solid #4ac6eb;
-  color: rgb(10, 137, 175);
-}
-.checkbox-doc:checked:after {
-  content: "✔";
-  font-size: 14px;
-  position: absolute;
-  top: 0px;
-  left: 3px;
-  color: #4ac6eb;
+.radio-doc input[type=radio]:checked {
+  border: 7px solid rgb(10, 137, 175);
+  background: white;
+  transition: all 200ms ease-in-out;
 }
 
 .doc-actions {
@@ -330,7 +322,17 @@ footer {
   gap: 20px;
 }
 .doc-actions button {
+  background-color: #4ac6eb;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #4ac6eb;
+  width: max-content;
   width: 250px;
+}
+.doc-actions button:active {
+  background-color: rgb(0, 103, 159);
+  border-color: rgb(0, 103, 159);
 }
 
 .popup-div {
@@ -380,13 +382,6 @@ footer {
 .popup-window textarea {
   height: 70px;
 }
-.popup-window button {
-  margin: 10px 0 0px 0;
-  padding: 22px;
-  border-radius: 20px;
-  border: none;
-  min-width: 250px;
-}
 
 .reg-div {
   display: none;
@@ -395,7 +390,7 @@ footer {
   width: 500px;
   left: calc((100vw - 620px) / 2);
 }
-.reg-div button {
+.reg-div .btn-submit {
   margin-top: 30px;
   min-width: max-content;
   width: 50%;
@@ -408,7 +403,7 @@ footer {
   width: 500px;
   left: calc((100vw - 620px) / 2);
 }
-.login-div button {
+.login-div .btn-submit {
   margin-top: 30px;
   min-width: max-content;
   width: 50%;
@@ -421,7 +416,7 @@ footer {
   width: 600px;
   left: calc((100vw - 690px) / 2);
 }
-.new-doc button {
+.new-doc .btn-submit {
   margin-top: 35px;
   width: 100%;
   padding: 25px;
@@ -504,10 +499,35 @@ footer {
   color: white;
 }
 
+.btn-close {
+  background-color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  justify-self: end;
+}
+
+.btn-submit {
+  background-color: #4ac6eb;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: 3px solid #4ac6eb;
+  width: max-content;
+  margin: 10px 0 0px 0;
+  padding: 22px;
+  border-radius: 20px;
+  border: none;
+  min-width: 250px;
+}
+.btn-submit:active {
+  background-color: rgb(0, 103, 159);
+  border-color: rgb(0, 103, 159);
+}
+
 .icon-close {
   cursor: pointer;
   fill: rgb(10, 137, 175);
   height: 20px;
   width: 20px;
-  justify-self: end;
 }

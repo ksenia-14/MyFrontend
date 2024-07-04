@@ -46,7 +46,7 @@ button {
     font-weight: bold;
 }
 
-input,
+input:where(:not([type="radio"])),
 textarea {
     border-color: $light-blue;
     border-width: 3px;
@@ -170,6 +170,20 @@ footer {
 
 // MAIN PAGE
 
+@mixin blue-button {
+    background-color: $main-blue;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid $main-blue;
+    width: max-content;
+
+    &:active {
+        background-color: $very-dark-blue;
+        border-color: $very-dark-blue;
+    }
+}
+
 .main-page {
     color: $dark-blue;
     padding: 30px;
@@ -177,20 +191,6 @@ footer {
     h2 {
         margin-top: 10px;
         margin-bottom: 20px;
-    }
-
-    button {
-        background-color: $main-blue;
-        color: white;
-        padding: 20px;
-        border-radius: 20px;
-        border: 3px solid $main-blue;
-        width: max-content;
-
-        &:active {
-            background-color: $very-dark-blue;
-            border-color: $very-dark-blue;
-        }
     }
 }
 
@@ -235,6 +235,10 @@ footer {
     grid-template-rows: repeat(2, max-content);
     gap: 10px;
     margin-bottom: 20px;
+
+    button {
+        @include blue-button();
+    }
 
     .block-find {
         grid-column-start: 1;
@@ -288,7 +292,7 @@ footer {
             margin-bottom: 10px;
 
             .filter-states {
-                @include custom-list;
+                @include custom-list();
             }
         }
     }
@@ -359,29 +363,25 @@ footer {
     }
 }
 
-.checkbox-doc {
-    appearance: none;
-    background-color: white;
-    border: 1px solid #cacece;
-    padding: 9px;
-    border-radius: 3px;
-    display: inline-block;
-    position: relative;
-    width: 20px;
+.radio-doc {
+    input:where([type="radio"]) {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        margin: calc(0.75em - 11px) 0.25rem 0 0;
+        vertical-align: top;
+        border-radius: 4px;
 
-    &:checked {
-        background-color: white;
-        border: 1px solid $main-blue;
-        color: $dark-blue;
+        border-radius: 50%;
+        background-color: $very-light-blue;
     }
-
-    &:checked:after {
-        content: '\2714';
-        font-size: 14px;
-        position: absolute;
-        top: 0px;
-        left: 3px;
-        color: $main-blue;
+    
+    input[type="radio"]:checked {
+        border: 7px solid $dark-blue;
+        background: white;
+        transition: all 200ms ease-in-out;
+        
     }
 }
 
@@ -391,6 +391,7 @@ footer {
     gap: 20px;
 
     button {
+        @include blue-button();
         width: 250px;
     }
 }
@@ -450,14 +451,6 @@ footer {
     textarea {
         height: 70px;
     }
-
-    button {
-        margin: 10px 0 0px 0;
-        padding: 22px;
-        border-radius: 20px;
-        border: none;
-        min-width: 250px;
-    }
 }
 
 @mixin auth-block {
@@ -465,7 +458,8 @@ footer {
     top: 15%;
     width: 500px;
     left: calc((100vw - 620px) / 2);
-    button {
+
+    .btn-submit {
         margin-top: 30px;
         min-width: max-content;
         width: 50%;
@@ -474,12 +468,12 @@ footer {
 
 .reg-div {
     display: none;
-    @include auth-block;
+    @include auth-block();
 }
 
 .login-div {
     display: none;
-    @include auth-block;
+    @include auth-block();
 }
 
 .new-doc {
@@ -489,7 +483,7 @@ footer {
     width: 600px;
     left: calc((100vw - 690px) / 2);
 
-    button {
+    .btn-submit {
         margin-top: 35px;
         width: 100%;
         padding: 25px;
@@ -556,10 +550,26 @@ footer {
     }
 }
 
+.btn-close {
+    background-color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    justify-self: end;
+}
+
+.btn-submit {
+    @include blue-button();
+    margin: 10px 0 0px 0;
+    padding: 22px;
+    border-radius: 20px;
+    border: none;
+    min-width: 250px;
+}
+
 .icon-close {
     cursor: pointer;
     fill: $dark-blue;
     height: 20px;
     width: 20px;
-    justify-self: end;
 }

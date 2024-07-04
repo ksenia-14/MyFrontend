@@ -4,7 +4,7 @@
 <head>
     <title>ЭДО</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -40,7 +40,7 @@
                     <a class="items-header exit" href="">Выход</a>
                 </li>
                 <li>
-                    <button class="button-header">Войти</button>
+                    <button id="btn-open-login" class="button-header">Войти</button>
                 </li>
                 <li>
                     <button class="button-header">Зарегистрироваться</button>
@@ -98,7 +98,7 @@
             </div>
 
             <div class="doc-element">
-                <div class="center"><input class="checkbox-doc" type="checkbox"></div>
+                <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span>Документ 1</span></div>
                 <div><span>Автор Авторович Авторов 1</span></div>
                 <div class="center"><span>01.01.2023</span></div>
@@ -107,7 +107,7 @@
             </div>
 
             <div class="doc-element">
-                <div class="center"><input class="checkbox-doc" type="checkbox"></div>
+                <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span>Документ 2</span></div>
                 <div><span>Автор Авторович Авторов 2</span></div>
                 <div class="center"><span>02.01.2023</span></div>
@@ -116,7 +116,7 @@
             </div>
 
             <div class="doc-element">
-                <div class="center"><input class="checkbox-doc" type="checkbox"></div>
+                <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span>Документ 3</span></div>
                 <div><span>Автор Авторович Авторов 3</span></div>
                 <div class="center"><span>03.01.2023</span></div>
@@ -125,7 +125,7 @@
             </div>
 
             <div class="doc-element">
-                <div class="center"><input class="checkbox-doc" type="checkbox"></div>
+                <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span>Документ 4</span></div>
                 <div><span>Автор Авторович Авторов 4</span></div>
                 <div class="center"><span>04.01.2023</span></div>
@@ -134,7 +134,7 @@
             </div>
 
             <div class="doc-element">
-                <div class="center"><input class="checkbox-doc" type="checkbox"></div>
+                <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span>Документ 5</span></div>
                 <div><span>Автор Авторович Авторов 5</span></div>
                 <div class="center"><span>05.01.2023</span></div>
@@ -150,31 +150,35 @@
             <button>Скачать</button>
         </div>
 
-        <div class="popup-div">
+        <div id="popup-div" class="popup-div">
             <div class="popup-fade"></div>
 
-            <div class="popup-window login-div">
-                <svg class="icon-close" fill="white" height="512px" style="enable-background:new 0 0 512 512;"
-                    version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <path
-                        d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" />
-                </svg>
+            <div id="popup-login" class="popup-window login-div">
+                <button id="btn-close-login" class="btn-close">
+                    <svg class="icon-close" fill="white" height="512px" style="enable-background:new 0 0 512 512;"
+                        version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path
+                            d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" />
+                    </svg>
+                </button>
                 <h2>Вход</h2>
                 <span>Логин</span>
                 <input>
                 <span>Пароль</span>
                 <input type="password">
-                <button>Войти</button>
+                <button class="btn-submit">Войти</button>
             </div>
 
             <div class="popup-window reg-div">
-                <svg class="icon-close" fill="white" height="512px" style="enable-background:new 0 0 512 512;"
-                    version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <path
-                        d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" />
-                </svg>
+                <button class="btn-close">
+                    <svg class="icon-close" fill="white" height="512px" style="enable-background:new 0 0 512 512;"
+                        version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path
+                            d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" />
+                    </svg>
+                </button>
                 <h2>Регистрация</h2>
                 <span>Логин</span>
                 <input>
@@ -182,16 +186,18 @@
                 <input type="password">
                 <span>Подтвердите пароль</span>
                 <input type="password">
-                <button>Зарегистрироваться</button>
+                <button class="btn-submit">Зарегистрироваться</button>
             </div>
 
             <div class="popup-window new-doc">
-                <svg class="icon-close" fill="white" height="512px" id="Layer_1"
-                    style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px"
-                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <path
-                        d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" />
-                </svg>
+                <button class="btn-close">
+                    <svg class="icon-close" fill="white" height="512px" id="Layer_1"
+                        style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="512px"
+                        xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <path
+                            d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" />
+                    </svg>
+                </button>
                 <h2>Создание нового документа</h2>
                 <div>
                     <label>Название документа</label>
@@ -228,7 +234,7 @@
                     <input type="file">
                     <span class="input-file-btn">Прикрепить файл</span>
                 </label>
-                <button>Сохранить</button>
+                <button class="btn-submit">Сохранить</button>
             </div>
 
         </div>
@@ -238,6 +244,9 @@
     <footer>
         Система электронного документооборота
     </footer>
+
+    <script src="script.js"></script>
+
 </body>
 
 </html>

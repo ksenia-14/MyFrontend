@@ -43,6 +43,90 @@ document.getElementById('btn-close-new-doc').addEventListener('click', () => {
 
 // FIND
 
+document.getElementById('btn-find').addEventListener('click', () => {
+    let field_find = document.getElementById('input-find').value;
+    let docs = document.getElementById('doc-table').querySelectorAll('.doc-element');
+    
+    let res_find;
+
+    for (let i = 0; i < docs.length; i++) {
+        fields = docs[i].querySelectorAll('span');
+        for (let j = 0; j < fields.length; j++) {
+            res_find = fields[j].innerText.toLowerCase().indexOf(field_find.toLowerCase());
+            if (res_find > -1) {
+                break;
+            }
+        }
+        if (res_find === -1) {
+            docs[i].classList.add("hidden");
+        } else {
+            docs[i].classList.remove("hidden");
+        }
+    }
+});
+
+function findByFields(filter_class, find_values) {
+    let docs = document.getElementById('doc-table').querySelectorAll('.doc-element');
+    let res_find;
+
+    docs.forEach(element => {
+        element.classList.add("hidden");
+    });
+
+    for (let i = 0; i < docs.length; i++) {
+        for (let j = 0; j < filter_class.length; j++) {
+            if (find_values[j] !== '') {
+                field = docs[i].querySelector(filter_class[j]);
+                res_find = field.innerText.toLowerCase().indexOf(find_values[j].toLowerCase());
+                if (res_find > -1) {
+                    docs[i].classList.remove("hidden");
+                    break;
+                }
+            }
+        }
+    }
+}
+
+function convertDateToInputFormat(str_date) {
+    let year = str_date.substr(6, 4);
+    let month = str_date.substr(3, 2);
+    let day = str_date.substr(0, 2);
+    return year + '-' + month + '-' + day;
+}
+
+function convertDateFromInputFormat(str_date) {
+    if (str_date === '') return '';
+
+    let day = str_date.substr(8, 2);
+    let month = str_date.substr(5, 2);
+    let year = str_date.substr(0, 4);
+    return  day + '.' + month + '.' + year;
+}
+
+document.getElementById('btn-apply-filters').addEventListener('click', () => {
+    filter_class = ['.doc-name', '.doc-author', '.doc-date', '.doc-state', '.doc-description'];
+
+    let select = document.getElementById('input-find-by-state')
+    find_values = [
+        document.getElementById('input-find-by-name').value,
+        document.getElementById('input-find-by-author').value,
+        convertDateFromInputFormat(document.getElementById('input-find-by-date').value),
+        select.options[select.selectedIndex].text,
+        document.getElementById('input-find-by-description').value
+    ];
+
+    if (find_values[3] === 'Все статусы') find_values[3] = '';
+
+    console.log(find_values);
+
+    find_values.forEach(element => {
+        if (element !== '') {
+            findByFields(filter_class, find_values);
+            return;
+        }
+    });
+});
+
 // DOC ACTIONS
 
 document.getElementById('btn-delete').addEventListener('click', () => {
@@ -61,12 +145,27 @@ document.getElementById('btn-edit').addEventListener('click', () => {
 
     doc_name.value = doc_edit.querySelector('.doc-name').innerText;
     doc_author.value = doc_edit.querySelector('.doc-author').innerText;
-    // doc_date.value = doc_edit.querySelector('.doc-date').innerText;
-    // doc_state.value = doc_edit.querySelector('.doc-state').innerText;
+
+    let str_date = doc_edit.querySelector('.doc-date').innerText;
+    doc_date.value = convertDateToInputFormat(str_date);
+
+    switch (doc_edit.querySelector('.doc-state').innerText) {
+        case ('Готов'):
+            doc_state.value = 'done';
+            break;
+        case ('В процессе'):
+            doc_state.value = 'progress';
+            break;
+        case ('Ожидает подтверждения'):
+            doc_state.value = 'wait';
+            break;
+        case ('Отклонен'):
+            doc_state.value = 'discard';
+            break;
+        case ('Новый'):
+            doc_state.value = 'new';
+            break;
+    }
+
     doc_description.value = doc_edit.querySelector('.doc-description').innerText;
-    // console.log('console');
-    // console.log(doc_description);
-    // console.log(doc_edit.querySelector('.doc-description'));
-    // console.log(doc_edit.querySelector('.doc-description').innerText);
-    
 });

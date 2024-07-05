@@ -54,8 +54,8 @@
         <h2>Список документов</h2>
         <div class="doc-menu">
             <div class="block-find">
-                <input class="filter-input" placeholder="Поиск документа">
-                <button class="filter-btn">Поиск</button>
+                <input id="input-find" class="filter-input" placeholder="Поиск документа">
+                <button id="btn-find" class="filter-btn">Поиск</button>
             </div>
             <div class="filter-menu">
                 <button class="btn-filters">
@@ -67,21 +67,21 @@
                     </svg>
                 </button>
                 <div class="filter-items">
-                    <input placeholder="Название">
-                    <input placeholder="Автор">
-                    <input type="date">
+                    <input id="input-find-by-name" placeholder="Название">
+                    <input id="input-find-by-author" placeholder="Автор">
+                    <input id="input-find-by-date" type="date">
                     <form class="filter-states">
-                        <select>
+                        <select id="input-find-by-state">
                             <option value="" selected="selected">Все статусы</option>
-                            <option value="">Готов</option>
-                            <option value="">В процессе</option>
-                            <option value="">Ожидает подтверждения</option>
-                            <option value="">Отклонен</option>
-                            <option value="">Новый</option>
+                            <option value="done">Готов</option>
+                            <option value="progress">В процессе</option>
+                            <option value="wait">Ожидает подтверждения</option>
+                            <option value="discard">Отклонен</option>
+                            <option value="new">Новый</option>
                         </select>
                     </form>
-                    <input placeholder="Описание">
-                    <button class="btn-apply">Применить фильтры</button>
+                    <input id="input-find-by-description" placeholder="Описание">
+                    <button id="btn-apply-filters" class="btn-apply">Применить фильтры</button>
                 </div>
             </div>
             <button id="btn-open-new-doc" class="btn-new-doc">Создать новый документ</button>
@@ -101,16 +101,16 @@
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span class="doc-name">Документ 1</span></div>
                 <div><span class="doc-author">Автор Авторович Авторов 1</span></div>
-                <div class="date center"><span>01.01.2023</span></div>
+                <div class="center"><span class="doc-date">01.01.2023</span></div>
                 <div><span class="doc-state">Готов</span></div>
                 <div><span class="doc-description">Описание 1</span></div>
             </div>
 
             <div id="doc-2" class="doc-element">
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
-                <div><span class="doc-name">Документ 2</span></div>
-                <div><span class="doc-author">Автор Авторович Авторов 2</span></div>
-                <div class="date center"><span>02.01.2023</span></div>
+                <div><span class="doc-name">Важный Документ 2</span></div>
+                <div><span class="doc-author">Иванов Иван Иванович</span></div>
+                <div class="center"><span class="doc-date">02.01.2023</span></div>
                 <div><span class="doc-state">Новый</span></div>
                 <div><span class="doc-description">Описание 2</span></div>
             </div>
@@ -119,7 +119,7 @@
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span class="doc-name">Документ 3</span></div>
                 <div><span class="doc-author">Автор Авторович Авторов 3</span></div>
-                <div class="date center"><span>03.01.2023</span></div>
+                <div class="center"><span class="doc-date">03.01.2023</span></div>
                 <div><span class="doc-state">В процессе</span></div>
                 <div><span class="doc-description">Описание 3</span></div>
             </div>
@@ -128,7 +128,7 @@
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span class="doc-name">Документ 4</span></div>
                 <div><span class="doc-author">Автор Авторович Авторов 4</span></div>
-                <div class="date center"><span>04.01.2023</span></div>
+                <div class="center"><span class="doc-date">04.01.2023</span></div>
                 <div><span class="doc-state">Ожидает подтверждения</span></div>
                 <div><span class="doc-description">Описание 4</span></div>
             </div>
@@ -137,7 +137,7 @@
                 <div class="center radio-doc"><input type="radio" name="radio-doc"></div>
                 <div><span class="doc-name">Документ 5</span></div>
                 <div><span class="doc-author">Автор Авторович Авторов 5</span></div>
-                <div class="date center"><span>05.01.2023</span></div>
+                <div class="center"><span class="doc-date">05.01.2023</span></div>
                 <div><span class="doc-state">Отклонен</span></div>
                 <div><span class="doc-description">Большое описание, которое описывает очень много важного </span></div>
             </div>
@@ -216,12 +216,11 @@
                         <label>Статус</label>
                         <form class="doc-states">
                             <select id="doc-state">
-                                <option value="" selected="selected">Все статусы</option>
-                                <option value="">Готов</option>
-                                <option value="">В процессе</option>
-                                <option value="">Ожидает подтверждения</option>
-                                <option value="">Отклонен</option>
-                                <option value="">Новый</option>
+                                <option value="new" selected="selected">Новый</option>
+                                <option value="done">Готов</option>
+                                <option value="progress">В процессе</option>
+                                <option value="wait">Ожидает подтверждения</option>
+                                <option value="discard">Отклонен</option>
                             </select>
                         </form>
                     </div>

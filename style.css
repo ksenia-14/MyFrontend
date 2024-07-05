@@ -299,6 +299,10 @@ footer {
   text-overflow: ellipsis;
 }
 
+.radio-doc {
+  width: 22px;
+  height: 22px;
+}
 .radio-doc input:where([type=radio]) {
   -webkit-appearance: none;
   appearance: none;
@@ -530,4 +534,8 @@ footer {
   fill: rgb(10, 137, 175);
   height: 20px;
   width: 20px;
+}
+
+.hidden {
+  display: none;
 }

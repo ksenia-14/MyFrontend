@@ -364,6 +364,9 @@ footer {
 }
 
 .radio-doc {
+    width: 22px;
+    height: 22px;
+    
     input:where([type="radio"]) {
         -webkit-appearance: none;
         appearance: none;
@@ -572,4 +575,8 @@ footer {
     fill: $dark-blue;
     height: 20px;
     width: 20px;
+}
+
+.hidden {
+    display: none;
 }

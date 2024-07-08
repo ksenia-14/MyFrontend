@@ -129,16 +129,30 @@ document.getElementById('btn-apply-filters').addEventListener('click', () => {
 
 // DOC ACTIONS
 
+const doc_name = document.getElementById('doc-name');
+const doc_author = document.getElementById('doc-author');
+const doc_date = document.getElementById('doc-date');
+const doc_state = document.getElementById('doc-state');
+const doc_description = document.getElementById('doc-description');
+
+document.getElementById('btn-save-new-doc').addEventListener('click', () => {
+    let newRow = document.querySelector(".doc-element").cloneNode(true);
+
+    newRow.querySelector('.doc-name').innerText = doc_name.value;
+    newRow.querySelector('.doc-author').innerText = doc_author.value;
+    newRow.querySelector('.doc-date').innerText = convertDateFromInputFormat(doc_date.value);
+    newRow.querySelector('.doc-state').innerText = doc_state.options[doc_state.selectedIndex].text;
+    newRow.querySelector('.doc-description').innerText = doc_description.value;
+
+    document.getElementById("doc-table").appendChild(newRow);
+    closePopupWindow(popup_new_doc);
+});
+
 document.getElementById('btn-delete').addEventListener('click', () => {
     document.querySelector('input[name="radio-doc"]:checked').parentNode.parentNode.remove();
 });
 
 document.getElementById('btn-edit').addEventListener('click', () => {
-    const doc_name = document.getElementById('doc-name');
-    const doc_author = document.getElementById('doc-author');
-    const doc_date = document.getElementById('doc-date');
-    const doc_state = document.getElementById('doc-state');
-    const doc_description = document.getElementById('doc-description');
     const doc_edit = document.querySelector('input[name="radio-doc"]:checked').parentNode.parentNode;
 
     openPopupWindow(popup_new_doc);

@@ -11,34 +11,29 @@ function openPopupWindow(popup_id) {
     popup_id.style.display = 'grid';
 }
 
-function closePopupWindow(popup_id) {
+function closePopupWindow() {
     popup_div.style.display = 'none';
     popup_div.style.pointerEvents = 'none';
-    popup_id.style.display = 'none';
+    document.querySelector('popup-window').style.display = 'none';
 }
 
 document.getElementById('btn-open-login').addEventListener('click', () => {
     openPopupWindow(popup_login);
 });
 
-document.getElementById('btn-close-login').addEventListener('click', () => {
-    closePopupWindow(popup_login);
-});
-
 document.getElementById('btn-open-reg').addEventListener('click', () => {
     openPopupWindow(popup_reg);
 });
 
-document.getElementById('btn-close-reg').addEventListener('click', () => {
-    closePopupWindow(popup_reg);
-});
-
 document.getElementById('btn-open-new-doc').addEventListener('click', () => {
+    popup_new_doc.querySelector('h2').innerText = 'Создание нового документа';
     openPopupWindow(popup_new_doc);
 });
 
-document.getElementById('btn-close-new-doc').addEventListener('click', () => {
-    closePopupWindow(popup_new_doc);
+document.querySelectorAll('.btn-close').forEach(btn_close => {
+    btn_close.addEventListener('click', () => {
+        closePopupWindow();
+    })
 });
 
 // FIND
@@ -70,7 +65,7 @@ function findByFields(filter_class, find_values) {
     let res_find;
 
     docs.forEach(element => {
-        element.classList.add("hidden");
+        element.classList.remove("hidden");
     });
 
     for (let i = 0; i < docs.length; i++) {
@@ -78,8 +73,8 @@ function findByFields(filter_class, find_values) {
             if (find_values[j] !== '') {
                 field = docs[i].querySelector(filter_class[j]);
                 res_find = field.innerText.toLowerCase().indexOf(find_values[j].toLowerCase());
-                if (res_find > -1) {
-                    docs[i].classList.remove("hidden");
+                if (res_find === -1) {
+                    docs[i].classList.add("hidden");
                     break;
                 }
             }
@@ -117,8 +112,6 @@ document.getElementById('btn-apply-filters').addEventListener('click', () => {
 
     if (find_values[3] === 'Все статусы') find_values[3] = '';
 
-    console.log(find_values);
-
     find_values.forEach(element => {
         if (element !== '') {
             findByFields(filter_class, find_values);
@@ -155,6 +148,7 @@ document.getElementById('btn-delete').addEventListener('click', () => {
 document.getElementById('btn-edit').addEventListener('click', () => {
     const doc_edit = document.querySelector('input[name="radio-doc"]:checked').parentNode.parentNode;
 
+    popup_new_doc.querySelector('h2').innerText = 'Редактирование документа';
     openPopupWindow(popup_new_doc);
 
     doc_name.value = doc_edit.querySelector('.doc-name').innerText;
